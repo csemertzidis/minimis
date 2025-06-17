@@ -1,0 +1,43 @@
+<?php
+
+function mainslider($field_slider)
+{
+
+    $slides = array();
+    foreach ($field_slider as $slide) {
+
+        $slide_item = array();
+
+        if ($slide['image_or_video'] == 1) {
+            $slide_item = array();
+            $slide_item['type'] = 'image';
+            $slide_item['image'] = $slide['image']['url'];
+            //srcset
+            $slide_item['srcset'] = wp_get_attachment_image_srcset($slide['image']['id'], 'medium');
+
+            //sizes
+            $slide_item['sizes'] = wp_get_attachment_image_sizes($slide['image']['id'], 'large');
+
+        }
+
+        if ($slide['image_or_video'] == 0) {
+            $slide_item = array();
+            $slide_item['type'] = 'video';
+            $slide_item['video'] = $slide['video'];
+            $slide_item['duration'] = $slide['video_duration'] * 1000;
+        }
+        array_push($slides, $slide_item);
+    }
+
+
+    slider_enqueue_scripts();
+
+
+    return $slides;
+}
+
+// enqueue mainslider.js
+function slider_enqueue_scripts()
+{
+    wp_enqueue_script('mainslider-js', get_template_directory_uri() . '/js/mainslider.js', array('swiper-js'), '1.0.0', true);
+}

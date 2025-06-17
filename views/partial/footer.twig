@@ -1,0 +1,71 @@
+<footer class="site-footer">
+    <div class="container-fluid">
+        <div class="container-xxl">
+            <div class="row">
+                <div class="col-12 text-center pt-3">
+                    <div class="row ">
+                        <div class="col-md-12 emaillink">
+                            <p class="email-contact">
+                                <a href="mailto:info@minimis.shop">
+                                    info@minimis.shop
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row footer-newsletter">
+                <div class="col-12">
+                   <p>
+                   {{footer_be_part}}
+                   </p> 
+                     <form class="newsletter-form">
+                        <input type="email" placeholder="need your email here" class="newsletter-input">
+                        <button type="submit" class="newsletter-submit">SUBMIT</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row footer-links">
+                    <div class="col-lg-6 col-md-4 footer-logo">
+                        <a href="/">
+                            <img src="{{ theme.link }}/assets/logo_footer_inverted.png" alt="{{ site.name }} Logo">
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 footer-column">
+                        <h6>C.</h6>
+                        <ul>
+                            {% for i in footer_col_1 %}
+                                <li><a href="{{ i.url }}">{{ i.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-4 footer-column">
+                        <h6>Cs.</h6>
+                        <ul>
+                            {% for i in footer_col_2 %}
+                                <li><a href="{{ i.url }}">{{ i.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-12 footer-column"> <!-- Adjusted grid for potential stacking -->
+                        <h6>A.</h6>
+                        <ul>
+                            {% for i in footer_col_3 %}
+                            <li><a href="{{ i.url }}">{{ i.title }}</a></li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row footer-copyright">
+                    <div class="col-12">
+                         <hr class="footer-divider">
+                        <p>&copy; {{ "now"|date("Y") }} | Designed by Poua Design</p>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+</footer>

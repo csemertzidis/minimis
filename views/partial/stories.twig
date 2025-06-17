@@ -1,0 +1,11 @@
+{% if stories is not empty %}
+	<div class="circle-container">
+		<div class="circle" 
+        {% if stories.preview_image %}
+        style="background-image: url('{{ stories.preview_image.image }}');
+        background-size: 80px; /* Width of the background image */
+                background-position: center;
+                background-repeat: no-repeat;
+        " {% endif %}></div>
+	</div>
+{% endif %}

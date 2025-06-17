@@ -1,0 +1,15 @@
+{
+    "name": "minimis-blocks/textwithbottle", 
+    "title": "Text With Bottle",
+    "description": "Text With Bottle",
+    "category": "custom_blocks", 
+    "icon": "admin-comments",
+    "keywords": ["rich", "text"],
+    "supports": { 
+      "align": "full" 
+    },
+    "acf": {
+      "mode": "edit",
+      "renderCallback": "textwithbottle" 
+    }
+  }

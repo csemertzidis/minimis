@@ -1,0 +1,15 @@
+.marquee-container{
+    padding-top: 1em;
+    padding-bottom: 1em;
+    .marquee-content{
+
+        .marquee-items{
+
+            span {
+                color: #c4c4c4;
+                font-weight: 300;
+                font-size: 1.2rem;
+            }
+        }
+    }
+}

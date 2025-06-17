@@ -1,0 +1,182 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+
+	{% do action('woocommerce_before_main_content') %}
+	
+	{% include 'partial/marquee.twig' %}
+
+	{% include 'partial/filters.twig' %}
+	{# <div class="before-shop-loop">
+		{% do action('woocommerce_before_shop_loop') %}
+	</div> #}
+	<div class="container product_archive">
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4 prodbox">
+			{% for product in products %}
+				<div class="col d-flex align-items-stretch">
+
+					<div class="card productcard">
+						{% if product.type == 'simple' %}
+							<a href="{{ product.permalink }}" class="shopnow">
+								<img src="{{ product.image }}" class="card-img-top" alt="{{ product.name }}">
+							</a>
+						{% endif %}
+
+						{% if product.type == 'variable' %}
+							{%  
+							include "woo/archive_variable_carousel.twig"
+								with {
+									id: product.id
+								}
+							%}
+						{% endif %}
+						<div class="card-body">
+							<div class="container p-0 m-0 mb-1">
+								<div class="row">
+									<div class="col-9">
+										<a href="{{ product.permalink }}" class="shopnow">
+											<h3 class="card-title m-0 p-0">{{ product.name }}</h3>
+										</a>
+									</div>
+									<div class="col-3 pt-2 d-flex justify-content-end">	
+										{% if product.in_wishlist %}
+											<div class="wishlist-icon fill box{{product.id}} ">
+												<i class="bi bi-heart-fill remove-from-wishlist heart{{ product.id }}" data-bs-toggle="tooltip" data-bs-placement="top" data-product-id="{{ product.id }}" title="Add to Wishlist"></i>
+											</div>
+										{% else %}
+											<div class="wishlist-icon box{{product.id}}">
+												<i class="bi bi-heart add-to-wishlist heart{{ product.id }}" data-bs-toggle="tooltip" data-bs-placement="top" data-product-id="{{ product.id }}" title="Add to Wishlist"></i>
+											</div>
+										{% endif %}
+									</div>	
+								</div>
+							</div>
+							
+							<div class="container p-0 m-0 mb-1">
+								<div class="row">
+									<div class="col-6">
+										<a href="{{ product.permalink }}" class="shopnow">
+											<h5>{{product.category}}</h5>
+										</a>
+									</div>
+									<div class="col-6 text-end">
+										<a href="{{ product.permalink }}" class="shopnow">
+											<h4>{{ product.price }}</h4>
+										</a>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+	
+
+	{% if user.is_wholesaler or user.is_admin %}
+		{% if total_pages > 1 %}
+			<nav class="woocommerce-pagination" aria-label="Σελιδοποίηση προϊόντων">
+				<ul class="page-numbers">
+					{% for p in 1..total_pages %}
+						<li>
+							{% if p == current_page %}
+								<span class="page-numbers current">
+									{{ p }}
+								</span>
+							{% else %}
+								<a class="page-numbers" href="{{ shoppage }}/page/{{ p }}{% if category_selected %}?category={{ category_selected }}{% if color_selected %}&color={{ color_selected }}{% endif %}{% elseif color_selected %}?color={{ color_selected }}{% endif %}">
+									{{ p }}
+								</a>
+							{% endif %}
+						</li>
+					{% endfor %}
+				</ul>
+			</nav>
+		{% endif %}
+	{% else %}
+
+	{% if total_pages > 1 %}
+	
+		<div class="container text-center load-more-container mt-4 mb-5">
+			<button id="my-ajax-button" class="btn ">
+			<img src="/wp-content/themes/minimis/assets/loadmore.png" style="width:70px; height:auto;" /><br/> load more</button>
+			<div class="spinner-border text-primary d-none" id="loading-spinner" role="status">
+				<span class="visually-hidden">Loading...</span>
+			</div>
+		</div>
+
+		<script>
+			// JavaScript to handle the AJAX request for loading more products
+
+			//when the button is clicked
+			document.getElementById('my-ajax-button').addEventListener('click', function() {
+				var button = this;
+				var spinner = document.getElementById('loading-spinner');
+				var currentPage = window.currentPage || {{ current_page }};
+				var totalPages = {{ total_pages }};
+				var shoppage = "{{ shoppage }}";
+				var categorySelected = "{{ category_selected }}";
+				var colorSelected = "{{ color_selected }}";
+
+				if (currentPage < totalPages) {
+					button.classList.add('d-none');
+					spinner.classList.remove('d-none');
+
+					jQuery.ajax({
+						type: 'POST',
+						url: `${window.location.origin}/wp-admin/admin-ajax.php`,
+						data: {
+							action: 'mnm_loadmore_archive',
+							current_page: currentPage + 1,
+							category: categorySelected,
+							color: colorSelected
+						},
+						success: function(response) {
+							//append the new products to the .prodbox
+							// Append the new products to the .prodbox
+							jQuery('.prodbox').append(response);
+							// Update current page - store it in a variable that persists between button clicks
+							window.currentPage = currentPage + 1;
+							currentPage = window.currentPage;
+
+							//update the url in the browser
+							var newUrl = `${shoppage}page/${currentPage}`;
+							if (categorySelected) {
+								newUrl += `?category=${categorySelected}`;
+								if (colorSelected) {
+									newUrl += `&color=${colorSelected}`;
+								}
+							} else if (colorSelected) {
+								newUrl += `?color=${colorSelected}`;
+							}
+							window.history.pushState({ path: newUrl }, '', newUrl);
+
+							// Hide spinner, show button
+							spinner.classList.add('d-none');
+							button.classList.remove('d-none');
+							// Hide button if we've reached the last page
+							if (currentPage >= totalPages) {
+								button.style.display = 'none';
+							}
+						},
+						error: function(xhr, status, error) {
+							console.error('Error loading more products:', error);
+							spinner.classList.add('d-none');
+							button.classList.remove('d-none');
+						}
+					})
+
+				} else {
+					alert("No more products to load.");
+				}
+			});
+
+		</script>
+		{% endif %}
+	{% endif %}
+{% endblock  %}

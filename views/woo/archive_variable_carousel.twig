@@ -1,0 +1,24 @@
+<div id="pcarousel{{ id }}" class="carousel slide carousel-dark" data-bs-interval="3000000" data-bs-ride="carousel">
+
+	<div class="carousel-inner">
+		{% for variation in product.variations %}
+			<div class="carousel-item {% if loop.first %}active{% endif %}">
+				<a href="{{ variation.link }}" aria-label="Προβολή:{{ variation.name }}">
+
+
+					<img decoding="async" src="{{ variation.image }}" srcset="{{ variation.srcset }}" sizes="{{ variation.sizes }}" class="d-block w-100 h-100 img-fluid" alt="{{ variation.name }}">
+
+				</a>
+			</div>
+		{% endfor %}
+	</div>
+	<button class="carousel-control-prev" type="button" data-bs-target="#pcarousel{{ id }}" data-bs-slide="prev" aria-label="previous variation">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Previous</span>
+	</button>
+	<button class="carousel-control-next" type="button" data-bs-target="#pcarousel{{ id }}" data-bs-slide="next" aria-label="next variation">
+
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Next</span>
+	</button>
+</div>

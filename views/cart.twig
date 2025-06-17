@@ -1,0 +1,11 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	{% include 'partial/marquee.twig' %}
+    <div class="container-fluid">
+        <div class="container-xxl">
+             {{post.content}}
+        </div>
+    </div>
+   
+{% endblock %}

@@ -1,0 +1,85 @@
+<section class="productsblock">
+    <div class="container-fluid">
+        <div class="container-xxl">
+            <div class="row">
+                <div class="col-12 col-md-5">
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="{{ products.0.link }}" class="productlink">
+                                <img src="{{ products.0.image }}" srcset="{{ products.0.srcset }}" alt="{{ products.0.alt }}" class="productimage"/>
+                            </a>
+                        </div>
+                        <div class="col-12">
+                            <h1 class="producttitle">{{ fields.title }}</h2>
+                        </div>
+                    </div>
+                </div> 
+                <div class="col-12 col-md-5 offset-md-2">
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-end">
+                            <h2 class="producttitle ">{{ fields.subtitle }}</h2>
+                        </div>
+                       <div class="col-12">
+                            <a href="{{ products.1.link }}" class="productlink">
+                                <img src="{{ products.1.image }}" srcset="{{ products.1.srcset }}" alt="{{ products.1.alt }}" class="productimage"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>       
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-5 offset-md-4">
+                    <a href="{{ products.0.link }}" class="productlink">
+                        <img src="{{ products.2.image }}" srcset="{{ products.2.srcset }}" alt="{{ products.2.alt }}" class="productimage"/>
+                    </a>
+                </div>
+            </div> 
+            
+            {# count products and if they are 6 repeat the first and second row as above #}
+            {% if products|length == 6 %}
+                <div class="row" id="loadmore-container">
+                    {# the show more button #}
+                    <div class="col-12 mt-5 mb-5 text-center">
+                        <img src="/wp-content/themes/minimis/assets/loadmore.png" alt="show more" class="loadmore" id="loadmore-button"/>
+                        <br/>
+                        <h4 id="loadmore-text">{{ loadmore}}</h4>
+                    </div>
+                </div>
+                <div class="row secondbatch" style="display: none;">
+                    <div class="col-12 col-md-5">
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="{{ products.3.link }}" class="productlink">
+                                    <img src="{{ products.3.image }}" srcset="{{ products.3.srcset }}" alt="{{ products.3.alt }}" class="productimage"/>
+                                </a>
+                            </div>
+                            <div class="col-12">
+                                <h1 class="producttitle">{{ fields.title }}</h1>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-12 col-md-5 offset-md-2">
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-end">
+                                    <h2 class="producttitle ">{{ fields.subtitle }}</h2>
+                                </div>
+                               <div class="col-12">
+                                    <a href="{{ products.4.link }}" class="productlink">
+                                        <img src="{{ products.4.image }}" srcset="{{ products.4.srcset }}" alt="{{ products.4.alt }}" class="productimage"/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>       
+                    </div>
+                    <div class="row secondbatch" style="display: none;">
+                        <div class="col-12 col-md-5 offset-md-4">
+                            <a href="{{ products.5.link }}" class="productlink">
+                                <img src="{{ products.5.image }}" srcset="{{ products.5.srcset }}" alt="{{ products.5.alt }}" class="productimage"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

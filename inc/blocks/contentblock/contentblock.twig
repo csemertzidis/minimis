@@ -1,0 +1,18 @@
+<section class="contentblock">
+	<div class="container-fluid">
+		<div class="container-xxl">
+			<div class="row">
+				{% if fields.title %}
+
+					<div class="col-12 col-md-4">
+						<h2>{{ fields.title }}</h2>
+						<p class="lead">{{ fields.subtitle }}</p>
+					</div>
+				{% endif %}
+				<div class="col-12 col-md-8 content">
+					{{ fields.content|raw }}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

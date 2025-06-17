@@ -1,0 +1,15 @@
+{
+    "name": "minimis-blocks/fourproducts", 
+    "title": "Four Products",
+    "description": "Four Products",
+    "category": "custom_blocks", 
+    "icon": "admin-comments",
+    "keywords": ["rich", "text"],
+    "supports": { 
+      "align": "full" 
+    },
+    "acf": {
+      "mode": "edit",
+      "renderCallback": "fourproducts" 
+    }
+  }

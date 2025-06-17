@@ -1,0 +1,71 @@
+.content-bottle {           
+    padding-top: 2em;
+    padding-bottom: 6em;
+
+    .header {
+        .bottle{
+            height: 150px;
+            
+        }
+
+        .title {
+            h2{
+                padding-top: 0.5em;
+                font-weight: 700 ;
+                font-size: 3.5rem;
+                line-height: 100%;
+
+                @media screen and (max-width: 767.98px) {
+                    font-size: 2.5rem;
+                }
+            }
+            
+        }
+    }
+
+    .content {
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            padding-top: 0.625em; 
+        }
+       
+
+        .text {
+            p {
+                font-size: 1.5rem;
+                font-weight: 100;
+                padding-top: 0.5em; 
+            }
+
+            a.link {
+                border-bottom: 3px solid #000;
+                font-weight: 600;
+                font-size: 1.5rem;
+                color: #000;
+                text-decoration: none;
+
+                &::after {
+                    content: "";
+                    display: inline-block;
+                    width: 0.8em;
+                    height: 0.8em;
+                    margin-left: 0.9em;
+                    background-image: url('../assets/arrow_up_right.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    transition: transform 0.2s ease-in-out;
+                }
+
+                &:hover::after {
+                    transform: translateX(0.25em);
+                }
+
+            }
+            
+        }
+    }
+    
+  
+}

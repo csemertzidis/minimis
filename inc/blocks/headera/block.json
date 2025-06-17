@@ -1,0 +1,15 @@
+{
+  "name": "minimis-blocks/headera", 
+  "title": "Header Type A",
+  "description": "A header block",
+  "category": "custom_blocks", 
+  "icon": "admin-comments",
+  "keywords": ["header"],
+  "supports": { 
+    "align": "full" 
+  },
+  "acf": {
+    "mode": "edit",
+    "renderCallback": "headera" 
+  }
+}

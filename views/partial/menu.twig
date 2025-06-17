@@ -1,0 +1,46 @@
+<nav class="nav">
+	<ul class="nav">
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+				Shop
+			</a>
+			<ul class="dropdown-menu mega2col">
+				<div class="row justify-content-center align-items-center g-2">
+					<div class="col  border-bottom pb-3 pt-3">
+						<a href="/shop" class="allproducts">All Products<a/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6">
+							{% for c in product_categories %}
+								<li>
+									<a class="dropdown-item" href="{{ c.link }}">{{ c.name }}
+										<small>({{ c.count }})</small>
+									</a>
+
+								</li>
+							{% endfor %}
+						</div>
+						<div class="col-6">
+							<li>
+								<a class="dropdown-item" href="#">Something else here</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">Separated link</a>
+							</li>
+						</div>
+					</div>
+
+				</ul>
+			</li>
+		</li>
+		{% for menuitem in headermenu %}
+			<li class="nav-item dropdown">
+				<a class="nav-link" href="{{ menuitem.url }}">
+
+					{{ menuitem.title }}
+				</a>
+			</li>
+		{% endfor %}
+	</li>
+</ul></nav></li>

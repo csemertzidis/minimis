@@ -1,0 +1,47 @@
+.fourproducts {
+
+    .container-fluid {
+        background-color: #000 !important;
+        color: #fff;
+
+        padding-top: 3em;
+        padding-bottom: 3em;
+    }
+    .title {
+
+        h2 {
+            font-weight: 700 ;
+            font-size: 3.5rem;
+            text-align: left;
+            line-height: 100%;
+        }
+    }
+
+    .link
+    {
+        a {
+            border-bottom: 3px solid #fff;
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: #fff;
+            text-decoration: none;
+
+            &::after {
+                content: "";
+                display: inline-block;
+                width: 0.8em;
+                height: 0.8em;
+                margin-left: 0.9em;
+                background-image: url('../assets/arrow_up_right_white.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                transition: transform 0.2s ease-in-out;
+            }
+
+            &:hover::after {
+                transform: translateX(0.25em);
+            }
+        }
+    }
+}

@@ -1,0 +1,146 @@
+.fullwidthtext {
+    margin-top: 2em;
+    margin-bottom: 2em;
+
+    // This is a full-width text element
+    // content comes from a wysiwyg editor
+
+    p {
+        margin-bottom: 1.2em;
+        line-height: 1.6;
+        font-weight: 200;
+        font-size: 1.3em;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
+        line-height: 1.2;
+        font-weight: 700;
+    }
+
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.75em; }
+    h3 { font-size: 1.5em; }
+    h4 { font-size: 1.25em; }
+    h5 { font-size: 1em; }
+    h6 { font-size: 0.85em; }
+
+    // Emphasis
+    strong, b { font-weight: 700; }
+    em, i { font-style: italic; }
+    u { text-decoration: underline; }
+    s, strike, del { text-decoration: line-through; }
+
+    // Lists
+    ul, ol {
+        margin: 1em 0;
+        padding-left: 2em;
+        font-size: 1.3em !important;
+        font-weight: 200;
+    }
+
+    ul {
+        list-style-type: disc;
+        
+        ul {
+            list-style-type: circle;
+        }
+    }
+
+    ol {
+        list-style-type: none;
+        counter-reset: item;
+        
+        > li {
+            counter-increment: item;
+            position: relative;
+            padding-left: 2.5em;
+            
+            &:before {
+                content: counter(item);
+                position: absolute;
+                left: 0;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 1.5em;
+                height: 1.5em;
+                border-radius: 50%;
+                border: 1px solid #000;
+                background-color: #ffffff;
+                color: #333;
+                font-weight: 400;
+                text-align: center;
+            }
+        }
+        
+        ol {
+            counter-reset: subitem;
+            
+            > li {
+                counter-increment: subitem;
+                
+                &:before {
+                    content: counter(subitem, lower-alpha);
+                }
+            }
+        }
+    }
+
+    li {
+        margin-bottom: 0.5em;
+    }
+
+    // Block elements
+    blockquote {
+        margin: 1.5em 0;
+        padding: 0.5em 1em;
+        border-left: 4px solid #ddd;
+        font-style: italic;
+    }
+
+    pre, code {
+        font-family: monospace;
+        background-color: #f5f5f5;
+        border-radius: 3px;
+    }
+
+    // Links
+    a {
+        color: #0066cc;
+        text-decoration: underline;
+        
+        &:hover {
+            color: #004080;
+        }
+    }
+
+    // Tables
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5em 0;
+    }
+
+    th, td {
+        padding: 0.5em;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    // Media
+    img {
+        max-width: 100%;
+        height: auto;
+        margin: 1em 0;
+    }
+
+    hr {
+        margin: 2em 0;
+        border: 0;
+        height: 1px;
+        background-color: #ddd;
+    }
+
+}

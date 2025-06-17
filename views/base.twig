@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	{% include 'partial/htmlhead.twig' %}
+	<body>
+
+		{# {% include 'partial/bottle-spinner.twig' %} #}
+		
+		{% include 'partial/headerv2.twig' %}
+
+		
+			{% block content %}
+			
+			{% endblock %}
+			{# {{ _context | json_encode | raw }} #}
+		
+
+
+		{% include 'partial/footer.twig' %}
+
+			
+		{# wp footer scripts #}
+		{{function('wp_footer')}}
+
+		{% block javascripts %}{# console log hello #}
+				<script>
+								console.log({{ _context | json_encode | raw }});
+							</script>
+		{% endblock %}
+
+		</body>
+	</html>

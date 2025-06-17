@@ -1,0 +1,89 @@
+<header>
+	<div class="container-fluid dark">
+		<div class="container-xxl">
+			<div class="row align-items-end pt-2 ">
+				<div class=" col-12 logo ">
+					<a href="{{site.url}}">
+						<img loading="lazy" width="300" height="100" src="{{theme.uri}}/assets/Logo_minimis.png" alt="logo" class="img-fluid mx-auto d-none d-sm-block">
+
+						<img loading="lazy" width="40" height="100" src="{{theme.uri}}/assets/logo_small_screens.png" alt="logo" class="img-fluid mx-auto d-block d-sm-none">
+
+					</a>
+				</div>
+
+
+				<div class="col-md-6 d-none d-md-block">
+					{% include 'partial/menu.twig' %}
+				</div>
+
+				<div class="col-md-6 d-none d-md-block toprightmenu ">
+
+					<div
+						class="row align-items-end justify-content-end">
+						{# here goes the search icon #}
+						<div class="col col-auto text-end ">
+							<div class="col col-auto text-end ">
+								<span class="clickable search" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+									Search
+									<i class="bi bi-search"></i>
+								</span>
+							</div>
+						</div>
+
+
+						<div class="col col-auto text-end ">
+							<div class="col col-auto text-end ">
+								<span class="clickable wishlist" data-bs-toggle="modal" data-bs-target="#wish_list_modal">
+									Wishlist<i class="bi bi-heart"></i>
+								</span>
+							</div>
+						</div>
+						<div class="col col-auto text-end ">
+							<a href="#" class="cartindicator" data-bs-toggle="modal" data-bs-target="#minicartmodal">
+								Cart
+
+								<i class="bi bi-bag" data-bs-toggle="modal" data-bs-target="#minicartmodal"></i>
+								<span class="cart-count">
+									{{ function('get_woocommerce_cart_count') }}
+								</span>
+
+
+							</a>
+						</div>
+						{% if languages %}
+							<div class="col col-auto ">
+								{% for l in languages %}
+									{% if l.active == 0 %}
+										<a href="{{ l.url }}" class="text-decoration-none lang_link">
+											{{ l.code }}
+										</a>
+									{% endif %}
+								{% endfor %}
+							</div>
+						{% endif %}
+
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		{% include 'partial/mobile_menu.twig' %}
+	</header>
+	<div class="modal fade" id="minicartmodal" tabindex="-1" aria-labelledby="minicartmodalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="minicartmodalLabel">Your Cart</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					{{ function('woocommerce_mini_cart') }}
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	{# offcanvas for search #}
+	{% include 'partial/search-off-canvas.twig' %}

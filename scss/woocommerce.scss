@@ -1,0 +1,88 @@
+.woocommerce {
+  //big screen
+  @media (min-width: 769px) {
+    margin-top: 20px;
+    .woocommerce-MyAccount-navigation {
+      //this should be the same as the sidebar
+      width: 20%;
+      float: left;
+      margin-right: 2%;
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        li {
+          margin-bottom: 10px;
+          text-align: right;
+          a {
+            color: #000;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 500;
+          }
+          a:hover {
+            color: #000;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .woocommerce-MyAccount-content {
+      //this should be the same as the content
+      width: 78%;
+      float: left;
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+    }
+  }
+
+  //small screen
+  @media (max-width: 768px) {
+    .woocommerce-MyAccount-navigation {
+      //this should be the same as the sidebar
+      width: 100%;
+      float: left;
+      margin-right: 0;
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        li {
+          float: left;
+          margin-bottom: 10px;
+          border: 1px solid #000;
+          border-radius: 5px;
+          padding: 3px;
+          margin-right: 3px;
+          a {
+            color: #000;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 500;
+          }
+          a:hover {
+            color: #000;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .woocommerce-MyAccount-content {
+      //this should be the same as the content
+      width: 100%;
+      float: left;
+
+      a {
+        color: #000;
+        text-decoration: underline;
+        font-weight: 500;
+      }
+    }
+  }
+}

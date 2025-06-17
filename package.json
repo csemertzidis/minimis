@@ -1,0 +1,26 @@
+{
+  "name": "pw",
+  "version": "1.0.0",
+  "description": "pw theme ",
+  "main": "gulpfile.js",
+  "scripts": {
+    "styles": "gulp styles",
+    "watch": "gulp watch"
+  },
+  "devDependencies": {
+    "gulp": "^5.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-postcss": "^10.0.0",
+    "gulp-sass": "^5.1.0"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "autoprefixer": "^10.4.20",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "cssnano": "^7.0.6",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.79.2",
+    "swiper": "^11.1.15"
+  }
+}

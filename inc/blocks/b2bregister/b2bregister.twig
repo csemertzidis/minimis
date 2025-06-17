@@ -1,0 +1,301 @@
+<div class="container-fluid b2b-register-block">
+    <div class="container-xxl">
+        <div class="b2b-registration-form" id="{{ block_id }}">
+            
+            <style>
+                .email-input-wrapper {
+                    position: relative;
+                }
+                .email-validation-icon {
+                    position: absolute;
+                    right: 10px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    font-size: 16px;
+                    z-index: 10;
+                }
+                .email-validation-message {
+                    font-size: 12px;
+                    margin-top: 5px;
+                    min-height: 18px;
+                }
+                #email.validating {
+                    border-color: #ffc107 !important;
+                }
+                #email.valid {
+                    border-color: #28a745 !important;
+                }
+                #email.invalid {
+                    border-color: #dc3545 !important;
+                }
+            </style>
+            
+            <h2>B2B form</h2>
+            <form id="b2b-register-form" method="post">
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="business_name">business name*</label>
+                        <input type="text" id="business_name" name="business_name" required placeholder="{{ formplaceholders.business_name }}*">
+                    </div>
+                    <div class="form-field">
+                        <label for="contact_person">contact person</label>
+                        <input type="text" id="contact_person" name="contact_person" required placeholder="{{ formplaceholders.contact_person }}">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="business_type">business type*</label>
+                        <input type="text" id="business_type" name="business_type" required placeholder="{{ formplaceholders.business_type }}*">
+                    </div>
+                    <div class="form-field">
+                        <label for="vat">VAT*</label>
+                        <input type="text" id="vat" name="vat" required placeholder="{{ formplaceholders.vat }}">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="address">address*</label>
+                        <input type="text" id="address" name="address" required placeholder="{{ formplaceholders.address }}*">
+                    </div>
+                    <div class="form-field">
+                        <label for="country">country*</label>
+                        <input type="text" id="country" name="country" required placeholder="{{ formplaceholders.country }}*">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="email">email*</label>
+                        <div class="email-input-wrapper" style="position: relative;">
+                            <input type="email" id="email" name="email" required placeholder="{{ formplaceholders.email }}*">
+                            <span class="email-validation-icon" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); display: none;">
+                                <span class="loading" style="display: none;">⏳</span>
+                                <span class="valid" style="display: none; color: #28a745;">✓</span>
+                                <span class="invalid" style="display: none; color: #dc3545;">✗</span>
+                            </span>
+                        </div>
+                        <div class="email-validation-message" style="font-size: 12px; margin-top: 5px; display: none;">
+                            <span class="error-message" style="color: #dc3545;"></span>
+                            <span class="success-message" style="color: #28a745;"></span>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label for="phone">phone*</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="{{ formplaceholders.phone }}*">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="website">website</label>
+                        <input type="url" id="website" name="website" placeholder="{{ formplaceholders.website }}">
+                    </div>
+                    <div class="form-field">
+                        <label for="social_media">social media</label>
+                        <input type="text" id="social_media" name="social_media" placeholder="{{ formplaceholders.social_media }}">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-field full-width">
+                        <label for="notes">notes</label>
+                        <textarea id="notes" name="notes" rows="5" placeholder="{{ formplaceholders.notes }}"></textarea>
+                    </div>
+                </div>
+                
+                {% if recaptcha_site_key %}
+                <div class="form-row">
+                    <div class="form-field full-width">
+                        <div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="form-row">
+                    <div class="form-field full-width">
+                        <div class="recaptcha-notice" style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 10px; margin: 10px 0; border-radius: 4px;">
+                            <strong>⚠️ reCAPTCHA Not Configured</strong><br>
+                            To enable reCAPTCHA protection, please configure your keys in WordPress Admin → Settings → B2B reCAPTCHA
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <div class="form-row">
+                    <div class="form-field submit-field">
+                        <button type="submit" id="submit-btn">{{ formplaceholders.submit }}</button>
+                    </div>
+                </div>
+                
+                <div id="form-message" class="form-message" style="display: none;"></div>
+                
+                <input type="hidden" name="action" value="b2b_register_user">
+                <input type="hidden" name="nonce" value="{{ nonce }}">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+jQuery(document).ready(function($) {
+    var emailValidationTimeout;
+    var isEmailValid = false;
+    
+    // Email validation function
+    function validateEmail() {
+        var email = $('#email').val().trim();
+        var $emailField = $('#email');
+        var $validationIcon = $('.email-validation-icon');
+        var $validationMessage = $('.email-validation-message');
+        var $errorMessage = $('.error-message');
+        var $successMessage = $('.success-message');
+        
+        // Clear previous states
+        $validationIcon.find('span').hide();
+        $validationMessage.hide();
+        $errorMessage.text('');
+        $successMessage.text('');
+        $emailField.css('border-color', '');
+        
+        if (email === '') {
+            isEmailValid = false;
+            return;
+        }
+        
+        // Show loading state
+        $validationIcon.show().find('.loading').show();
+        $emailField.css('border-color', '#ffc107');
+        
+        // Make AJAX call
+        $.ajax({
+            url: '{{ ajax_url }}',
+            type: 'POST',
+            data: {
+                action: 'b2b_validate_email',
+                email: email,
+                nonce: '{{ nonce }}'
+            },
+            dataType: 'json',
+            success: function(response) {
+                $validationIcon.find('.loading').hide();
+                
+                if (response.success) {
+                    // Email is valid and available
+                    isEmailValid = true;
+                    $validationIcon.find('.valid').show();
+                    $emailField.css('border-color', '#28a745');
+                    $successMessage.text(response.data.message);
+                    $validationMessage.show();
+                } else {
+                    // Email is invalid or already exists
+                    isEmailValid = false;
+                    $validationIcon.find('.invalid').show();
+                    $emailField.css('border-color', '#dc3545');
+                    $errorMessage.text(response.data.message);
+                    $validationMessage.show();
+                }
+            },
+            error: function() {
+                // Handle AJAX error
+                isEmailValid = false;
+                $validationIcon.find('.loading').hide();
+                $validationIcon.find('.invalid').show();
+                $emailField.css('border-color', '#dc3545');
+                $errorMessage.text('Unable to validate email. Please try again.');
+                $validationMessage.show();
+            }
+        });
+    }
+    
+    // Real-time validation on keyup
+    $('#email').on('keyup', function() {
+        clearTimeout(emailValidationTimeout);
+        emailValidationTimeout = setTimeout(validateEmail, 300); // 300ms delay
+    });
+    
+    // Validation on blur (when user leaves field)
+    $('#email').on('blur', function() {
+        clearTimeout(emailValidationTimeout);
+        validateEmail();
+    });
+    
+    // Form submission handler
+    $('#b2b-register-form').on('submit', function(e) {
+        e.preventDefault();
+        
+        var $form = $(this);
+        var $submitBtn = $('#submit-btn');
+        var $message = $('#form-message');
+        
+        // Check email validation first
+        if (!isEmailValid) {
+            $message.removeClass('success').addClass('error')
+                   .html('Please provide a valid and available email address before submitting.').show();
+            $('#email').focus();
+            return;
+        }
+        
+        // Check if reCAPTCHA is present and completed
+        if (typeof grecaptcha !== 'undefined' && $('.g-recaptcha').length > 0) {
+            var recaptchaResponse = grecaptcha.getResponse();
+            if (!recaptchaResponse) {
+                $message.removeClass('success').addClass('error')
+                       .html('Please complete the reCAPTCHA verification').show();
+                return;
+            }
+        }
+        
+        // Disable submit button and show loading
+        $submitBtn.prop('disabled', true).text('SUBMITTING...');
+        $message.hide();
+        
+        // Serialize form data
+        var formData = $form.serialize();
+        
+        $.ajax({
+            url: '{{ ajax_url }}',
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    $message.removeClass('error').addClass('success')
+                           .html(response.data.message).show();
+                    $form[0].reset(); // Clear form
+                    
+                    // Reset email validation state
+                    isEmailValid = false;
+                    $('.email-validation-icon').hide();
+                    $('.email-validation-message').hide();
+                    $('#email').css('border-color', '');
+                    
+                    // Reset reCAPTCHA if present
+                    if (typeof grecaptcha !== 'undefined' && $('.g-recaptcha').length > 0) {
+                        grecaptcha.reset();
+                    }
+                } else {
+                    $message.removeClass('success').addClass('error')
+                           .html(response.data.message).show();
+                    // Reset reCAPTCHA on error if present
+                    if (typeof grecaptcha !== 'undefined' && $('.g-recaptcha').length > 0) {
+                        grecaptcha.reset();
+                    }
+                }
+            },
+            error: function(xhr, status, error) {
+                $message.removeClass('success').addClass('error')
+                       .html('An error occurred. Please try again.').show();
+                // Reset reCAPTCHA on error if present
+                if (typeof grecaptcha !== 'undefined' && $('.g-recaptcha').length > 0) {
+                    grecaptcha.reset();
+                }
+            },
+            complete: function() {
+                // Re-enable submit button
+                $submitBtn.prop('disabled', false).text('SUBMIT');
+            }
+        });
+    });
+});</script>

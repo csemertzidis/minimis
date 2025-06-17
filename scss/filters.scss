@@ -1,0 +1,36 @@
+.filters {
+    padding-top: 2em;
+    // border: 1px solid #000;
+    .container-fluid{
+        
+        .container-xxl{
+border-bottom: 2px solid #000;
+        margin-bottom: 0.9em;
+        padding: 0px !important;
+            
+            .row{
+padding-bottom: 0.8em;
+                .filterscategories{
+
+                    ul{
+                        padding: 0px !important;
+                        margin: 0px !important;
+                        li{
+
+                            list-style: none;
+                            display: inline-block;
+                            margin-right: 1rem;
+                            a{
+                                color:#000;
+                                text-decoration: none;
+                                font-size: 1.3em;
+                                font-weight: 200;
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

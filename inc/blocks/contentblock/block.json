@@ -1,0 +1,15 @@
+{
+"name": "minimis-blocks/contentblock",
+"title": "Content Block",
+"description": "A Content Block",
+"category": "custom_blocks",
+"icon": "admin-comments",
+"keywords": ["List"],
+"supports": {
+"align": "full"
+},
+"acf": {
+"mode": "edit",
+"renderCallback": "contentblock"
+}
+}

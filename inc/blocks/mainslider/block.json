@@ -1,0 +1,15 @@
+{
+  "name": "minimis-blocks/mainslider", 
+  "title": "Main Slider",
+  "description": "A Hero Slider Block",
+  "category": "custom_blocks", 
+  "icon": "admin-comments",
+  "keywords": ["rich", "text"],
+  "supports": { 
+    "align": "full" 
+  },
+  "acf": {
+    "mode": "edit",
+    "renderCallback": "mainslider" 
+  }
+}

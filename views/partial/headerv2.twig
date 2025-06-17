@@ -1,0 +1,200 @@
+<header>
+	<div class="container-fluid topheaderv2">
+		<div class="container-xxl h-100 align-middle ">
+			<div class="row">
+				<div class="col-3 h-100 align-middle ">
+					{% if languages %}
+						<div class="col-12 pt-3">
+							{% for l in languages %}
+								{% if l.active == 0 %}
+									<a href="{{ l.url }}" class="text-decoration-none lang_link">
+										{{ l.code }}
+									</a>
+								{% endif %}
+							{% endfor %}
+						</div>
+					{% endif %}
+				</div>
+				<div class="col-6 text-center social_links">
+					<ul>
+						{% for i in social_links %}
+							<li>
+								<a href="{{ i.url }}" target="_blank" class="text-decoration-none">
+									<img src="{{ i.icon }}">
+								</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid menuvbarv2">
+		<div class="container-xxl pt-4">
+			<div class="row">
+				<div class="col-5 pt-3">
+					<a data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft" class="text-decoration-none">
+						<img src="{{ logo_menu}}" alt="{{ site_name }}" class="logo_menu" />
+					</a>
+				</div>
+				<div class="col-2 text-center">
+					<a href="{{ home_url }}" class="text-decoration-none">
+						<img src="{{ logo_center}}" alt="{{ site_name }}" class="logo_center" />
+					</a>
+				</div>
+				<div class="col-5 text-end mainbar_menu">
+					{% if mainbar_menu_title %}
+						<a href="{{ mainbar_menu_url }}" class="text-decoration-none">
+							{{ mainbar_menu_title }}
+						</a>
+					{% endif %}
+					<ul class=" pt-3">
+						{% for i in mainbar_menu  %}
+							<li>
+								<a href="{{ i.url }}" class="menu-item"
+									{% if i.databs %}
+										{{ i.databs }}
+									{% endif %}
+								>
+									<img src="{{ i.icon }}" alt="{{ i.title }}" class="menu-icon" />
+								</a>
+							</li>
+						{% endfor %}
+					</ul>
+					
+				</div>
+			</div>
+	</div>
+</header>
+
+<!-- Offcanvas Sidebar -->
+<div class="offcanvas offcanvas-start fullscreen-offcanvas" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+	<div class="offcanvas-header">
+		<div class="row w-100">
+			<div class="col-6 text-start">
+				<button type="button" class="btn border-0" data-bs-dismiss="offcanvas" aria-label="Close">
+					<div class="burger-icon" style="display: inline-block; cursor: pointer; padding: 5px;">
+						<div class="burger-line" style="width: 25px; height: 3px; background-color: #fff; margin: 5px 0;"></div>
+						<div class="burger-line" style="width: 25px; height: 3px; background-color: #fff; margin: 5px 0;"></div>
+						<div class="burger-line" style="width: 25px; height: 3px; background-color: #fff; margin: 5px 0;"></div>
+					</div>
+				</button>
+			</div>
+			<div class="col-6 text-end">
+				<a href="{{ home_url }}" class="text-decoration-none">
+					<img src="{{ offcanvas.topright.icon }}" alt="{{ site_name }}" style="width:100px; height:auto;"/>
+				</a>
+			</div>
+		</div>
+    </div>
+    <div class="offcanvas-body">
+		<div class="offcanvas-menu">
+			<ul class="menu-list">
+				{% for i in menu.items %}
+					{% if i.children %}
+						<li class="top-menu-item has-children">
+							<a href="javascript:void(0)" class="menu-toggle">
+								{{ i.title }}
+								
+									<img src="/wp-content/themes/minimis/assets/main_menu_more.png" style="width:70px; height:auto;"/>
+								
+							</a>
+							<ul class="submenu collapsed">
+								{% for j in i.children %}
+									<li>
+										<a href="{{ j.url }}">
+											{{ j.title }}
+										</a>
+									</li>
+								{% endfor %}
+							</ul>
+						</li>
+					{% else %}
+						<li class="top-menu-item">
+							<a href="{{ i.url }}">
+								{{ i.title }}
+							</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				const menuToggles = document.querySelectorAll('.menu-toggle');
+				
+				menuToggles.forEach(toggle => {
+					toggle.addEventListener('click', function(e) {
+						e.preventDefault();
+						const submenu = this.nextElementSibling;
+						const icon = this.querySelector('.toggle-icon');
+						
+						// Close all other open submenus first
+						const allOpenSubmenus = document.querySelectorAll('.submenu:not(.collapsed)');
+						allOpenSubmenus.forEach(menu => {
+							if (menu !== submenu) {
+								menu.classList.add('collapsed');
+								const menuIcon = menu.previousElementSibling.querySelector('.toggle-icon');
+								//if (menuIcon) menuIcon.textContent = '+';
+							}
+						});
+						
+						// Toggle the clicked submenu
+						submenu.classList.toggle('collapsed');
+						//icon.textContent = submenu.classList.contains('collapsed') ? '+' : '-';
+					});
+				});
+			});
+		</script>
+
+		<style>
+			.offcanvas-body {
+				overflow-y: auto;
+			}
+			
+			.menu-list {
+				list-style: none;
+				padding: 0;
+			}
+			
+			.submenu {
+				padding-left: 2em;
+				padding-bottom: 2em;
+				padding-top: 2em;
+				list-style: none;
+				padding-left: 20px;
+				max-height: 1000px;
+				overflow: hidden;
+				transition: max-height 0.3s ease-out;
+			}
+			
+			.submenu.collapsed {
+				max-height: 0;
+				padding-left: 2em;
+				padding-bottom: 2em;
+				padding-top: 2em;
+			}
+			
+			.toggle-icon {
+				float: right;
+			}
+		</style>
+    </div>
+	<div class="offcanvas-footer">
+		<div class="col-6 text-center social_links">
+			<ul>
+				{% for i in social_links %}
+					<li>
+						<a href="{{ i.url }}" target="_blank" class="text-decoration-none">
+							<img src="{{ i.icon }}">
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+
+{% include 'partial/search-off-canvas.twig' %}
+

@@ -1,0 +1,32 @@
+.bottle-spinner {
+    transform-origin: center center;
+    animation: spin-both-ways 5s linear infinite;
+    padding: 30px;
+    width: 150px;
+
+}
+
+@keyframes spin-both-ways {
+    0% {
+        transform: rotate(0deg);
+    }
+    10% { /* Initial delay */
+        transform: rotate(0deg);
+        animation-timing-function: ease-in;
+    }
+    40% { /* Two full clockwise rotations */
+        transform: rotate(720deg);
+        animation-timing-function: ease-out;
+    }
+    50% { /* Short pause */
+        transform: rotate(720deg);
+        animation-timing-function: ease-in;
+    }
+    90% { /* Two full counter-clockwise rotations */
+        transform: rotate(0deg);
+        animation-timing-function: ease-out;
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}

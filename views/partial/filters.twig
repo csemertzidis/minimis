@@ -1,0 +1,37 @@
+<section class="filters">
+    <div class="container-fluid">
+        <div class="container-xxl">
+            <div class="row">
+                <div class="col-6 filterscategories">
+                    <ul>
+                        {% for i in filters_categories %}
+                            <li>
+                                <a href="{{shoppage}}?category={{ i.slug }}{% if color_selected %}&color={{ color_selected }}{% endif %}" class="filterscategorieslink {% if i.select %}active{% endif %}">
+                                    {{ i.name|lower }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-6 filterscolors">
+                    <form method="get" action="/shop">
+                        {% if category_selected %}
+                            <input type="hidden" name="category" value="{{ category_selected }}">
+                        {% endif %}
+                        <select class="form-select" id="filterscolors" name="color" aria-label="Default select example" onchange="this.form.submit()">
+                            <option ></option>
+                            {% for i in filter_color_to_attribute %}
+                                <option value="{{ i.title }}"
+                                    {% if i.select %}
+                                        selected
+                                    {% endif %} 
+                                >
+                                {{ i.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

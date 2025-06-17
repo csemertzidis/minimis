@@ -1,0 +1,15 @@
+{
+  "name": "minimis-blocks/b2bregister", 
+  "title": " b2bregister",
+  "description": "A b2bregister block",
+  "category": "custom_blocks", 
+  "icon": "admin-comments",
+  "keywords": ["Home", "Products", "Block"],
+  "supports": { 
+    "align": "full" 
+  },
+  "acf": {
+    "mode": "edit",
+    "renderCallback": "b2bregister" 
+  }
+}

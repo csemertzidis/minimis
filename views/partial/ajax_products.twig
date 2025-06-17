@@ -1,0 +1,61 @@
+{% for product in products %}
+				<div class="col d-flex align-items-stretch">
+
+					<div class="card productcard">
+						{% if product.type == 'simple' %}
+							<a href="{{ product.permalink }}" class="shopnow">
+								<img src="{{ product.image }}" class="card-img-top" alt="{{ product.name }}">
+							</a>
+						{% endif %}
+
+						{% if product.type == 'variable' %}
+							{%  
+							include "woo/archive_variable_carousel.twig"
+								with {
+									id: product.id
+								}
+							%}
+						{% endif %}
+						<div class="card-body">
+							<div class="container p-0 m-0 mb-1">
+								<div class="row">
+									<div class="col-9">
+										<a href="{{ product.permalink }}" class="shopnow">
+											<h3 class="card-title m-0 p-0">{{ product.name }}</h3>
+										</a>
+									</div>
+									<div class="col-3 pt-2 d-flex justify-content-end">	
+										{% if product.in_wishlist %}
+											<div class="wishlist-icon fill box{{product.id}} ">
+												<i class="bi bi-heart-fill remove-from-wishlist heart{{ product.id }}" data-bs-toggle="tooltip" data-bs-placement="top" data-product-id="{{ product.id }}" title="Add to Wishlist"></i>
+											</div>
+										{% else %}
+											<div class="wishlist-icon box{{product.id}}">
+												<i class="bi bi-heart add-to-wishlist heart{{ product.id }}" data-bs-toggle="tooltip" data-bs-placement="top" data-product-id="{{ product.id }}" title="Add to Wishlist"></i>
+											</div>
+										{% endif %}
+									</div>	
+								</div>
+							</div>
+							
+							<div class="container p-0 m-0 mb-1">
+								<div class="row">
+									<div class="col-6">
+										<a href="{{ product.permalink }}" class="shopnow">
+											<h5>{{product.category}}</h5>
+										</a>
+									</div>
+									<div class="col-6 text-end">
+										<a href="{{ product.permalink }}" class="shopnow">
+											<h4>{{ product.price }}</h4>
+										</a>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			{% endfor %}

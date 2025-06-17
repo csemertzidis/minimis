@@ -1,0 +1,51 @@
+<section class="colors">
+    <div class="container-fluid">
+        <div class="container-xxl">
+            <div class="row">
+                <div class="col-12 col-md-4 d-flex flex-column justify-content-end">
+                    <div class="row">
+                       <div class="col-12">
+                            <img src="/wp-content/themes/minimis/assets/bottle_standing.png" alt="Bottle standing" class="bottle_standing" >
+                       </div> 
+                       <div class="col-12">
+                            <h2 class="title">
+                                {{fields.title}}
+                            </h2>
+                       </div> 
+                    </div>
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="row">
+                        <div class="col-12 subtitle text-left">
+                            {{fields.subtitle}}
+                        </div>
+                    </div>
+                    <div class="row colorswords">
+                        {% for c in fields.colors %}
+                            <div class="col-12">
+                                <a href="{{ c.link.url }}">
+                                    <h3>
+                                        {{ c.color_title|upper }}
+                                    </h3>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="row colorsrectangles">
+                        {% for c in fields.colors %}
+                            <div class="col-2 colorcont" >
+                                <a href="{{ c.link.url }}" class="col-2 m-2 " >
+                                    <div class="colorsquare text-end"
+                                        style="background-color: {{ c.color }}{% if c.color == '#ffffff' %}; border: 1px solid #000{% endif %}">
+                                        <img src="/wp-content/themes/minimis/assets/arrow_up_right.png" alt="Arrow up right">
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

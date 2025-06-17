@@ -1,0 +1,95 @@
+<div class="container-fluid fixed-bottom d-md-none dark bottombar">
+	<div class="row align-items-center pt-2 pb-2">
+		<div class="col-3 text-end">
+			<b>
+				B2B
+			</b>
+		</div>
+		<div class="col-2 text-center">
+			{% for l in languages %}
+				{% if l.active == 0 %}
+					<a href="{{ l.url }}" class="text-decoration-none lang_link">
+						{{ l.code }}
+					</a>
+				{% endif %}
+			{% endfor %}
+		</div>
+		<div class="col-2 text-center">
+			<i class="bi bi-heart fs-3 wishlist" data-bs-toggle="modal" data-bs-target="#wish_list_modal"></i>
+
+		</div>
+		<div class="col-3 text-center">
+			<a href="#" class="cartindicator" data-bs-toggle="modal" data-bs-target="#minicartmodal">
+				<i class="bi bi-bag" data-bs-toggle="modal" data-bs-target="#minicartmodal">
+					<span class="cart-count">
+						{{ function('get_woocommerce_cart_count') }}
+					</span>
+				</i>
+			</a>
+		</div>
+		<div class="col-2 text-start">
+			<i class="bi bi-list fs-3" data-bs-toggle="modal" data-bs-target="#mobile_menu"></i>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="mobile_menu" tabindex="-1" aria-labelledby="mobileMenuLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-height: 60% !important;">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="row categoriesmenu">
+					<div class="col-12">
+						<a href="/shop" class="text-decoration-none">
+							Όλες οι Κατηγορίες Προϊόντων
+						</a>
+					</div>
+				</div>
+				<div class="row categoriesmenu">
+					{% for pc in product_categories  %}
+						<div class="col-6">
+							<a href="{{ pc.link }}" class="text-decoration-none">
+								{{ pc.name }}
+							</a>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="wish_list_modal" tabindex="-1" aria-labelledby="wishListModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<i class="bi bi-heart-fill"></i>
+				<h5 class="modal-title ms-2" id="wishListModalLabel">Wish List</h5>
+			</div>
+			<div class="modal-body wishlist-content">
+
+				{% for p in wishlist %}
+					<div class="row mb-2">
+						<div class="col-3">
+							<a href="{{ p.permalink }}">
+								<img src="{{ p.image }}" alt="{{ p.name }}" class="img-fluid">
+							</a>
+						</div>
+						<div class="col-7">
+							<h6>{{ p.name }}</h6>
+							<p>{{ p.price }}</p>
+						</div>
+						<div class="col-2 text-end">
+							<i class="bi bi-trash remove-from-wishlist" data-product-id="{{ p.id }}"></i>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+		</div>
+	</div>
+</div>

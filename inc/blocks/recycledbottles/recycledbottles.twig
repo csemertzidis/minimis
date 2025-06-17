@@ -1,0 +1,85 @@
+<section class="recycledbottles">
+    <div class="container-fluid">
+        <div class="container-xxl">
+            <div class="row">
+                <div class="col-12 col-md-9 offset-md-3">
+                    <img src="/wp-content/themes/minimis/assets/bottle_standing.png"/>
+                    <h3>
+                       {{ subtitle }}
+                    </h3>
+                </div>
+            </div>
+           
+        </div>
+        <div class="container-xxl">
+            <div class="row mt-3">
+                <div class="col-12 col-md-3">
+                    <h2>
+                        re-<br>
+                        glass<br>
+                        your<br>
+                        life.
+                    </h2>
+                </div>
+                <div class="col-12 col-md-9 h-100 d-inline-block mt-md-5">
+                    <div class="row">
+                        <div class="col-6 col-md-4">
+                            <p class="count-up-number" data-target="8800">0</p> blue
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <p class="count-up-number" data-target="6500">0</p> olive
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <p class="count-up-number" data-target="8000">0</p> green
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <p class="count-up-number" data-target="9300">0</p> brown
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <p class="count-up-number" data-target="7000">0</p> turquoise
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <p class="count-up-number" data-target="7600">0</p> transparent
+                        </div>
+                    </div>  
+            </div>
+</section>
+
+
+
+<script>
+    // Use Intersection Observer to detect when the section is visible during scrolling
+    document.addEventListener('DOMContentLoaded', function() {
+        const section = document.querySelector('.recycledbottles');
+        const counters = document.querySelectorAll('.count-up-number');
+        let animated = false;
+        
+        const observer = new IntersectionObserver((entries) => {
+            // If section is visible and hasn't been animated yet
+            if (entries[0].isIntersecting && !animated) {
+                animated = true;
+                
+                counters.forEach(counter => {
+                    const target = +counter.dataset.target; // Get the target number from a data attribute
+                    let current = 0;
+                    const increment = target / 500; // Increased from 200 to 500 for slower counting
+                    
+                    const updateCounter = () => {
+                        if (current < target) {
+                            current += increment;
+                            counter.textContent = Math.ceil(current).toLocaleString('en-US'); // Format as needed
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target.toLocaleString('en-US');
+                        }
+                    };
+
+                    updateCounter();
+                });
+            }
+        });
+        
+        // Start observing the section
+        observer.observe(section);
+    });
+</script>

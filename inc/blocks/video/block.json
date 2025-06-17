@@ -1,0 +1,15 @@
+{
+    "name": "minimis-blocks/video",
+    "title": "Video Block",
+    "description": "A block to display videos",
+    "category": "custom_blocks",
+    "icon": "video-alt3",
+    "keywords": ["video", "media"],
+    "supports": {
+        "align": "full"
+    },
+    "acf": {
+        "mode": "edit",
+        "renderCallback": "video"
+    }
+}

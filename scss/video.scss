@@ -1,0 +1,28 @@
+@import "variables";
+
+.video {
+  //video container
+  video {
+    border-radius: 20px;
+    width: 100%;
+    height: auto;
+    padding: 5px;
+  }
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56%; /* Aspect ratio 16:9 */
+    height: 0;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 20px;
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: 100.2%;
+    height: 100%;
+  }
+}

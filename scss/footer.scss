@@ -1,0 +1,211 @@
+
+@import "variables"; // Make sure variables are imported
+
+.site-footer {
+    background-color: #000;
+    color: #fff;
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    font-family: sans-serif; // Consider using a theme variable if defined
+
+    .emaillink {
+
+        p{
+            text-align: left;
+            a{
+                
+                font-size: 2.8em;
+                font-weight: 500;
+                color: #fff !important;
+                border-bottom: 4px solid #fff;
+
+                &:hover {
+                    text-decoration: none;
+                    color: #fff !important;
+                }
+
+                //smaller screens
+                @media screen and (max-width: 767.98px) {
+                    font-size: 2.2rem; // Smaller font size on mobile
+                    border-bottom: 1px solid #fff; // Line under email
+                }
+            }
+           
+            
+        }
+    }
+
+    a {
+        color: #fff;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    // Newsletter Section
+    .footer-newsletter {
+
+        p{
+            text-align: left;
+            font-size: 1.5em;
+       
+        }
+
+        margin-bottom: 4rem;
+       // border-bottom: 1px solid #555; // Line under email
+        padding-bottom: 1.5rem;
+
+        .email-contact {
+            font-size: 1.5rem; // Adjust size as needed
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+
+            //smaller screens
+        }
+
+        .newsletter-cta {
+            font-size: 1rem; // Adjust size as needed
+            color: #ccc; // Lighter gray
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            
+            align-items: center;
+            
+            padding-bottom: 0.5rem;
+            margin-top: 2rem; // Add space above form
+            border: 0px solid #555; // Line around form
+
+            @media screen and (min-width: 767.98px) {
+              //border-bottom: 1px solid #fff; // Line under input
+              
+            }
+
+            .newsletter-input {
+              background: transparent;
+              border: none;
+              color: #fff;
+              font-size: 1.8rem; // Large placeholder text
+              font-weight: 300; // Bold placeholder
+              padding: 0.5rem 0;
+              flex-grow: 1;
+              outline: none;
+              width:50%;
+              margin-right: 10%;;
+              font-size: 4em;
+              border-bottom: 3px solid #fff; // Line under input
+              &::placeholder {
+                  color: #aaa; // Placeholder color
+                  opacity: 1;
+              }
+
+              @media screen and (max-width: 767.98px) {
+                  font-size: 1.2rem; // Smaller font size on mobile
+                  border-bottom: 1px solid #fff; // Line under input
+                  margin-bottom: 2em;
+              }
+
+            }
+
+            .newsletter-submit {
+                background: transparent;
+                border: 3px solid #fff;
+                color: #fff;
+                
+                font-size: 3.4em;
+                cursor: pointer;
+                font-weight: 100;
+                letter-spacing: 1px;
+                padding-left: 2em;
+                padding-right: 2em;
+                @media screen and (min-width: 767.98px) {
+                  margin-left: 1rem;
+                  
+                }
+
+                @media screen and (max-width: 767.98px) {
+                    font-size: 1.2rem; // Smaller font size on mobile
+                    padding: 0.5rem 1rem;
+                    margin-top: 1em;
+                }
+
+                &:hover {
+                    background-color: #fff;
+                    color: #000;
+                }
+            }
+        }
+    }
+
+    // Footer Links Section
+    .footer-links {
+        margin-bottom: 3rem;
+
+        .footer-logo {
+            img {
+                max-width: 100px; // Adjust size as needed
+                height: auto;
+            }
+             // Center logo on smaller screens if needed
+            @media (max-width: 991.98px) {
+                margin-bottom: 2rem;
+                text-align: center; // Or left, depending on design preference
+            }
+        }
+
+        .footer-column {
+             margin-bottom: 1.5rem; // Space between columns on mobile
+
+            h6 {
+                font-weight: bold;
+                margin-bottom: 1rem;
+                font-size: 0.9rem; // Small headings
+                color: #ccc;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                li {
+                    margin-bottom: 0.5rem;
+
+                    a {
+                        font-size: 0.9rem; // Link text size
+                    }
+                }
+            }
+        }
+    }
+
+    // Copyright Section
+    .footer-copyright {
+        text-align: right; // Align text to the right
+
+        .footer-divider {
+             border: 0;
+             border-top: 1px solid #555; // White line above copyright
+             width: 80px; // Short line width
+             margin: 1.5rem 0 1rem auto; // Margin top, bottom, auto left margin for right alignment
+        }
+
+
+        p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+         // Center copyright on smaller screens
+         @media (max-width: 767.98px) {
+            text-align: center;
+             .footer-divider {
+                 margin-left: auto;
+                 margin-right: auto;
+             }
+        }
+    }
+}

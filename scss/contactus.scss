@@ -1,0 +1,131 @@
+.contactus {
+
+    .container-fluid{
+
+        padding-top: 3em;
+        
+
+        .links{
+
+            margin-bottom: 3em;
+
+            .row{
+
+                .col-6{
+                   
+                    a{
+                        font-size: 1.9em !important;
+                        color: #000;
+                        border-bottom: 3px solid #000;
+                        text-align: left;
+                        text-decoration: none;
+                        margin-bottom: 10px;
+                        
+                        
+                       
+
+                        &::after{
+                            content: "";
+                            display: inline-block;
+                            background-image: url('/wp-content/themes/minimis/assets/arrow_up_right.png');
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            background-size: contain;
+                            width: 20px;
+                            height: 20px;
+                            margin-left: 38px;
+                            vertical-align: middle;
+                        }
+                    }
+                    p{
+                        margin-top: 10px;
+                        font-size: 1.2em;
+                    }
+                }
+
+                .sociallinks {
+                    
+                    margin-top: 3em;
+                    border-bottom: 2px solid #000;
+                    p{
+                        background-color: #fff !important;
+                        margin-bottom: -5px;
+                        margin-left: -15px;
+                        padding: 0 5px;
+                        width: 30%;
+                        a{
+                            font-size: 1.4em !important;
+                            color: #000;
+                            text-decoration: none;
+                            font-weight: 300;
+                            margin-right: 20px;
+                        }
+                    }
+                }
+            }
+        }
+
+       
+       
+    } 
+    
+    .form{
+
+        background-color: #d9dadaff;
+
+        .container-xxl{
+            padding-bottom: 4em;
+
+            h2{
+                font-size: 2.4em;
+                font-weight: 500;
+                &::after{
+                    content: "";
+                    display: inline-block;
+                    width: 150px;
+                    height: 3px;
+                    background-color: #000;
+                    margin-left: 10px;
+                    vertical-align: bottom;
+                    margin-bottom: 7px;
+                }
+            }
+
+            form {
+
+                input[type="text"],
+                input[type="tel"],
+                input[type="email"]{
+                    width: 100% !important;
+                    border-radius: 0 !important;
+                    border:0px !important;
+                    box-shadow: none !important;
+                    border-bottom:2px solid #000 !important;
+                    background-color: transparent !important;
+                    font-size: 2.3em !important;
+                    color: #ecececff    !important;
+
+
+                    &::placeholder{
+                        color:#ecececff !important;
+                    }
+                }
+
+                textarea{
+                    width: 100% !important;
+                    border-radius: 0 !important;
+                    border:2px solid #000!important;
+                    box-shadow: none !important;
+                    margin-top: 2em;
+                    background-color: transparent !important;
+                    font-size: 2.3em !important;
+                    color: #ecececff    !important;
+
+                    &::placeholder{
+                        color:#ecececff !important;
+                    }
+                }   
+            }
+        }
+    }
+}

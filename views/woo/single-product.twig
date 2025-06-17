@@ -1,0 +1,14 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	{% include 'partial/marquee.twig' %}
+	{% do action('woocommerce_before_single_product') %}
+	<article itemscope itemtype="https://schema.org/Product" class="single-product-details {{ post.class }}">
+
+		<div class="container productwrap">
+			<div class="row">
+				{% do action('minimis-single-product') %}
+			</div>
+		</div>
+	</article>
+{% endblock  %}

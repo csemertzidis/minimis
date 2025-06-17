@@ -1,0 +1,33 @@
+<section class="content-bottle">
+    <div class="container-fluid">
+        <div class="container-xxl">
+            <div class="row header">
+                <div class="col-4 bottle">
+                    {% include 'partial/bottle-spinner.twig' %}
+                </div> 
+                <div class="col-8 title">
+                    <h2>
+                        {{ fields.title}}
+                    </h2>
+                </div>
+            </div>
+            <div class="row content mt-5">
+                <div class="col-12 col-md-2 offset-md-4  ">
+                    <h3>
+                        {{ fields.subtitle }}
+                    </h3>
+                </div>
+                <div class="col-md-6 text">
+                    {{ fields.content }}
+                    {% if fields.link %}
+                        <br/>
+                        <a href="{{ fields.link.url }}" target="{{ fields.link.target }}" class="link">
+                            {{ fields.link.title }}
+                        </a>
+                    {% endif %}
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</section>

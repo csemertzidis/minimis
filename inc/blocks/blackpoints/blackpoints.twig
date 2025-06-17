@@ -1,0 +1,31 @@
+<section class="blackpoints">
+    <div class="container-fluid">
+        <div class="container-xxl">
+            <h2>
+                {{ fields.block_title }}
+            </h2>
+        </div>
+        <div class="container-xxl black">
+            <div class="row">
+                {% for i in items %}
+                    <div class="col-12 col-md-4 item">
+                        <div class="row iconrow">
+                            <div class="col-12">
+                                <img src="{{ i.icon }}" srcset="{{i.srcset}}" alt="{{ i.alt }}" />
+                            </div>
+                        </div>
+                        <div class="row headingrow">
+                            <div class="col-12">
+                                <h3>{{i.title}}</h3>
+                            </div>
+                        </div>
+
+                        <p>
+                            {{i.text}}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

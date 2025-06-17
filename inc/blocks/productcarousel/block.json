@@ -1,0 +1,15 @@
+{
+  "name": "minimis-blocks/productcarousel", 
+  "title": "Product Carousel",
+  "description": "A list block with carousel",
+  "category": "custom_blocks", 
+  "icon": "admin-comments",
+  "keywords": ["List"],
+  "supports": { 
+    "align": "full" 
+  },
+  "acf": {
+    "mode": "edit",
+    "renderCallback": "productcarousel" 
+  }
+}

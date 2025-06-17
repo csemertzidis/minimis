@@ -1,0 +1,52 @@
+.circle-container {
+  width: 68px; /* Adjust for outer border */
+  height: 68px; /* Adjust for outer border */
+  border-radius: 50%;
+  background: linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  ); /* Example gradient */
+  position: fixed;
+  z-index: 1000;
+
+  //big screen
+  @media screen and (min-width: 768px) {
+    top: 40px; /* Adjusted for border */
+    left: 40px;
+  }
+
+  //mobile screen
+  @media screen and (max-width: 768px) {
+    top: 20px; /* Adjusted for border */
+    left: 20px;
+  }
+  /* Adjusted for border */
+  // animation: pulse 2s infinite;
+}
+
+.circle {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: #fff; /* Or your image URL */
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

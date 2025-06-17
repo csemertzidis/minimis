@@ -1,0 +1,199 @@
+<section class="contactus">
+    <div class="container-fluid">
+        <div class="container-xxl links">
+            <div class="row">
+                <div class="col-6">
+                    <a href="mailto:info@minimis.shop">
+                        info@minimis.shop
+                    </a><br/>
+                    <p>
+                        
+                    {{emailline}}
+                    </p>
+                </div>
+                <div class="col-6">
+                    <a href="tel:+302661024810" class="phone text-right">
+                        +30 2661 024810
+                    </a><br/>
+                    <p>
+                        {{phoneline}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 sociallinks">
+                    <p>
+                        {% for sn in social %}
+                            <a href="{{ sn.link }}" class="social-link">
+                                {{sn.name}}
+                            </a>
+                        {% endfor %}
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+   </div>
+    <div class="container-fluid form">
+        <div class="container-xxl ">
+            <h2>
+                {{ title }}
+            </h2>
+            <form id="contact-form" method="post">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <input type="text" class="form-control" placeholder="{{ form.placeholders.name }}" name="name" required>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input type="tel" class="form-control" placeholder="{{ form.placeholders.phone }}" name="phone" required>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input type="email" class="form-control" placeholder="{{ form.placeholders.email }}" name="email" required>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input type="text" class="form-control" placeholder="{{ form.placeholders.subject }}" name="subject">
+                    </div>
+                    <div class="col-12">
+                        <textarea class="form-control" placeholder="{{ form.placeholders.message }}" name="message" rows="5"></textarea>
+                    </div>
+                    
+                    {% if recaptcha_site_key %}
+                    <div class="col-12">
+                        <div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div>
+                    </div>
+                    {% else %}
+                    <div class="col-12">
+                        <div class="recaptcha-notice" style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 10px; margin: 10px 0; border-radius: 4px;">
+                            <strong>⚠️ reCAPTCHA Not Configured</strong><br>
+                            To enable reCAPTCHA protection, please configure your keys in WordPress Admin → Settings → B2B reCAPTCHA
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary" id="contact-submit-btn">
+                            {{ form.placeholders.submit }}
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="contact-form-message" class="form-message text-right" style="display: none; margin-top: 15px; padding: 10px; border-radius: 4px;"></div>
+                
+                <input type="hidden" name="action" value="contact_form_submission">
+                <input type="hidden" name="nonce" value="{{ nonce }}">
+            </form>
+        </div>
+    </div>
+</section>
+
+<style>
+    .form-message.success {
+        background-color: #d4edda;
+        border: 1px solid #c3e6cb;
+        color: #155724;
+    }
+    .form-message.error {
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+        color: #721c24;
+    }
+</style>
+
+<script>
+jQuery(document).ready(function($) {
+    // Debug reCAPTCHA loading
+    console.log('Contact form loaded');
+    console.log('reCAPTCHA elements found:', $('.g-recaptcha').length);
+    console.log('grecaptcha defined:', typeof grecaptcha !== 'undefined');
+    
+    // Form submission handler
+    $('#contact-form').on('submit', function(e) {
+        e.preventDefault();
+        
+        var $form = $(this);
+        var $submitBtn = $('#contact-submit-btn');
+        var $message = $('#contact-form-message');
+        
+        // Basic form validation
+        var name = $('input[name="name"]').val().trim();
+        var phone = $('input[name="phone"]').val().trim();
+        var email = $('input[name="email"]').val().trim();
+        
+        if (!name || !phone || !email) {
+            $message.removeClass('success').addClass('error')
+                   .html('Please fill in all required fields (Name, Phone, Email).').show();
+            return;
+        }
+        
+        // Email validation
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            $message.removeClass('success').addClass('error')
+                   .html('Please enter a valid email address.').show();
+            $('input[name="email"]').focus();
+            return;
+        }
+        
+        // Check if reCAPTCHA is present and completed
+        if ($('.g-recaptcha').length > 0) {
+            if (typeof grecaptcha === 'undefined') {
+                $message.removeClass('success').addClass('error')
+                       .html('reCAPTCHA is not loaded properly. Please refresh the page and try again.').show();
+                return;
+            }
+            
+            var recaptchaResponse = grecaptcha.getResponse();
+            if (!recaptchaResponse) {
+                $message.removeClass('success').addClass('error')
+                       .html('Please complete the reCAPTCHA verification.').show();
+                return;
+            }
+        }
+        
+        // Disable submit button and show loading
+        $submitBtn.prop('disabled', true).text('SENDING...');
+        $message.hide();
+        
+        // Serialize form data
+        var formData = $form.serialize();
+        
+        $.ajax({
+            url: '{{ ajax_url }}',
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    $message.removeClass('error').addClass('success')
+                           .html(response.data.message).show();
+                    $form[0].reset(); // Clear form
+                    
+                    // Reset reCAPTCHA if present
+                    if (typeof grecaptcha !== 'undefined' && $('.g-recaptcha').length > 0) {
+                        grecaptcha.reset();
+                    }
+                } else {
+                    $message.removeClass('success').addClass('error')
+                           .html(response.data.message).show();
+                    // Reset reCAPTCHA on error if present
+                    if (typeof grecaptcha !== 'undefined' && $('.g-recaptcha').length > 0) {
+                        grecaptcha.reset();
+                    }
+                }
+            },
+            error: function(xhr, status, error) {
+                $message.removeClass('success').addClass('error')
+                       .html('An error occurred. Please try again.').show();
+                // Reset reCAPTCHA on error if present
+                if (typeof grecaptcha !== 'undefined' && $('.g-recaptcha').length > 0) {
+                    grecaptcha.reset();
+                }
+            },
+            complete: function() {
+                // Re-enable submit button
+                $submitBtn.prop('disabled', false).text('{{ form.submit }}');
+            }
+        });
+    });
+});
+</script>

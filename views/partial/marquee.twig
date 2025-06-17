@@ -1,0 +1,70 @@
+{# 
+    Infinite Marquee - Scrolls from right to left smoothly 
+#}
+
+{% set speed = speed|default(60) %}
+{% set pause_on_hover = pause_on_hover|default(true) %}
+{% set items = items|default(['J', 'E', 'W', 'E', 'L', 'L', 'E', 'R', 'Y',  'M', 'A', 'D', 'E', 'O', 'U', 'T',  'O', 'F',  'R', 'E', 'C', 'Y', 'C', 'L', 'E', 'D',  'B', 'O', 'T', 'T', 'L', 'E', 'S']) %}
+
+<section class="marquee">
+    <div class="container-fluid">
+        <div class="container-xxl">
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <div class="marquee-items">
+                    {% for item in items %}
+                        <span class="marquee-item">{{ item }}</span>
+                    {% endfor %}
+                </div>
+                {# Duplicate items for seamless looping #}
+                <div class="marquee-items">
+                    {% for item in items %}
+                        <span class="marquee-item">{{ item }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        </div>  
+    </div>
+</section>
+
+
+<style>
+    .marquee-container {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .marquee-content {
+        display: flex;
+        width: max-content;
+        animation: marquee {{ speed }}s linear infinite;
+    }
+    
+    .marquee-items {
+        display: flex;
+        align-items: center;
+    }
+    
+    .marquee-item {
+        padding: 0 1rem;
+        white-space: nowrap;
+    }
+    
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+    
+    {% if pause_on_hover %}
+    /* Pause animation on hover */
+    .marquee-container:hover .marquee-content {
+        animation-play-state: paused;
+    }
+    {% endif %}
+</style>

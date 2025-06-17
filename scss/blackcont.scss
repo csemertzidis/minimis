@@ -1,0 +1,54 @@
+.blackcont {
+    .container-xxl {
+    background-color: #000;
+    padding-top: 9em;
+    padding-bottom: 3em;
+    margin-bottom: 2em;
+    color: #fff !important;
+    border-left: 13px solid #fff;
+    border-right: 16px solid #fff;
+
+    
+    background-image: url('/wp-content/themes/minimis/assets/blackcontbg.png');
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size: 60% auto;
+
+    
+
+    }
+
+
+    h2 {
+        font-size: 6rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+    }
+
+    p{
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: 200;
+        
+    }
+
+    a {
+        color: #fff !important;
+        text-decoration: none;
+        font-size: 4em;
+        font-weight: 800;
+        padding-left: 2em;
+        
+        &::after {
+            content: '';
+            display: inline-block;
+            width: 220px;
+            height: 30px;
+            background-image: url('/wp-content/themes/minimis/assets/linkafterwhite.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-left: 30px;
+            vertical-align: middle;
+        }
+    }
+}

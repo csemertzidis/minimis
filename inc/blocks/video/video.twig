@@ -1,0 +1,22 @@
+<section class="video">
+	<div class="container-fluid">
+		<div class="container-xxl">
+			{% if fields.video_type %}
+				{% if fields.uploaded_video.url %}
+					<video id="videoPlayer" controls>
+						<source src="{{ fields.uploaded_video.url }}" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+				{% endif %}
+			{% else %}
+				{% if fields.youtube_video_url %}
+					<div class="video-container">
+						<iframe class="ytvideo" src="{{ fields.youtube_video_url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				{% endif %}
+			{% endif %}
+
+		</div>
+
+	</div>
+</section>

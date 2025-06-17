@@ -1,0 +1,15 @@
+{
+  "name": "minimis-blocks/listblock", 
+  "title": "List Block With link",
+  "description": "A list block with link",
+  "category": "custom_blocks", 
+  "icon": "admin-comments",
+  "keywords": ["List"],
+  "supports": { 
+    "align": "full" 
+  },
+  "acf": {
+    "mode": "edit",
+    "renderCallback": "listblock" 
+  }
+}

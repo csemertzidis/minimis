@@ -1,0 +1,15 @@
+{
+  "name": "minimis-blocks/blackcont", 
+  "title": " Black content Block",
+  "description": "A block",
+  "category": "custom_blocks", 
+  "icon": "admin-comments",
+  "keywords": ["Home", "Products", "Block"],
+  "supports": { 
+    "align": "full" 
+  },
+  "acf": {
+    "mode": "edit",
+    "renderCallback": "blackcont" 
+  }
+}

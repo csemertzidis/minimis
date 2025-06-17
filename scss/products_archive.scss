@@ -1,0 +1,216 @@
+@import "variables";
+
+.product_archive {
+  //the cards
+  .card {
+    border: none; /* Remove the border */
+    border-radius: 0; /* Set border-radius to 0 for sharp corners */
+    background-color: #e2252500;
+
+    font-family: "Manrope", sans-serif !important;
+    font-weight: 300 !important;
+  }
+
+  b {
+    font-weight: 500;
+  }
+
+  .card-title {
+    //media queries
+    font-weight: 600;
+
+    //media queries according to bs5 breakpoints
+    @media (max-width: 576px) {
+      font-size: 1.4em;
+    }
+    @media (min-width: 576px) {
+      font-size: 1em;
+    }
+    @media (min-width: 768px) {
+      font-size: 1em;
+    }
+    @media (min-width: 992px) {
+      font-size: 1em;
+    }
+    @media (min-width: 1200px) {
+      font-size: 1.3em;
+    }
+  }
+  .card-price {
+    font-weight: 500;
+    text-align: left;
+    font-size: 0.9em;
+  }
+
+  .actions > a {
+    font-weight: 400;
+    text-align: left;
+    font-size: 1.1em;
+    text-decoration: none !important;
+    color: $text-color !important;
+  }
+}
+.woocommerce-breadcrumb {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 0.95em;
+  font-weight: 500;
+  color: $text-color;
+  a {
+    color: $text-color;
+    text-decoration: none;
+  }
+  a:hover {
+    color: $link-active;
+  }
+}
+.before-shop-loop {
+  margin-bottom: 20px !important;
+  //force width to 100%
+  width: 100% !important;
+  border-bottom: 1px solid $border-color !important;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; /* Align items to the bottom */
+  padding-right: 20px !important;
+  .woocommerce-ordering {
+    .orderby {
+      font-size: 1em;
+      font-weight: 500;
+      color: $text-color;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      padding: 5px;
+      border-radius: 5px !important;
+
+      background-color: #fff;
+      border: 1px solid $border-color;
+    }
+  }
+}
+
+.shopnow {
+
+  
+  color:#000;
+  text-decoration: none !important;
+
+  h3 {
+    font-size: 1.8em !important;
+    font-weight: 800;
+    color: $text-color;
+  }
+
+  h4 {
+    font-size: 1.3em !important;
+    font-weight: 800;
+    color: $text-color;
+  }
+
+  h5 {
+    font-size: 1.3em !important;
+    font-weight: 400;
+    color: $text-color;
+  }
+
+}
+
+.wishlist-icon {
+    //cursos is pointer
+    cursor: pointer;
+    border:1px solid #000;
+    border-radius: 50%;
+    width: 30px !important;
+    height: 30px !important;
+    text-align: center;
+    vertical-align: middle;
+  }
+.fill {
+    background-color: red;
+    border-color: red;
+  }
+.bi-heart {
+  font-size: 1.24em;
+  color: rgb(0, 0, 0);
+  padding: 2px;
+  border-radius: 25%;
+  //make it square
+  width: 40px !important;
+  height: 30px !important;
+}
+.bi-heart-fill {
+  font-size: 1.24em;
+  color: rgb(255, 255, 255);
+  
+  padding: 2px;
+  border-radius: 25%;
+  //make it square
+  width: 40px !important;
+  height: 30px !important;
+}
+//
+
+.productcard {
+  
+
+
+
+  .carousel-inner {
+    // border-radius: 10px;
+  }
+}
+
+
+
+
+
+.woocommerce-pagination {
+  //center the pagination
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  .page-numbers {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: $text-color;
+    margin-right: 10px;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    list-style: none;
+    width: 100%;
+    li {
+      display: inline-block; /* So we can give them width and height */
+      width: 40px; /* Adjust as needed */
+      height: 40px; /* Adjust as needed */
+      border-radius: 50%; /* Make them circular */
+      background-color: #ffffff; /* Example background color */
+      border: 1px solid #ccc;
+      line-height: 28px; /* Center text vertically */
+
+      a {
+        display: block !important; /* Make the whole area clickable */
+        text-align: center !important;
+        color: #7e7e7e;
+      }
+
+      span {
+        display: block !important; /* Make the whole area clickable */
+        text-align: center !important;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+
+.product-details, .product-description {
+
+  font-weight: 500;
+  font-size: 1.1em;
+  color: #000000;
+}

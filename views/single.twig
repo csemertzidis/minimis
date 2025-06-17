@@ -1,0 +1,59 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	{% include 'partial/marquee.twig' %}
+	<div class="content-wrapper">
+		<article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
+			<section class="blogheader">
+				<div class="container-fluid">
+					<div class="container-xxl">
+						<h1>
+							{{post.title}}
+						</h1>
+					</div>
+				</div>
+			</section>
+			<section class="article-content">
+				<div class="container-fluid mb-5">
+					<div class="container-xxl">
+						<div class="article-body">
+							{{post.content}}
+						</div>
+					</div>	
+				</div>
+			</section>
+			<section class="blogfooter">
+				<div class="container-fluid">
+					<div class="container-xxl mt-5 mb-5">
+						{% include 'woo/dropup-share.twig' %}
+					</div>
+				</div>
+			</section>	
+		</article>
+	</div>
+	<!-- /content-wrapper -->
+	{# related posts #}
+	{% if related_posts %}
+		<section class="related-posts">
+			<div class="container-fluid">
+				<div class="container-xxl">
+					<h2>Related Posts</h2>
+					<div class="row">
+						{% for post in related_posts %}
+							<div class="col-6 col-md-4">
+								<div class="link_container">
+									<a href="{{ post.link }}" >
+										{{post.title}}
+									</a>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</section>
+	{% endif %}
+	{# <pre>
+		{{ dump(fields.related_posts) }}
+	</pre> #}
+{% endblock %}

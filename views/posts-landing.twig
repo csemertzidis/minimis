@@ -1,0 +1,37 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<div class="content-wrapper">
+		<section class="blogheader">
+			<h1>
+				{{post.title}}
+			</h1>
+			<p class="leadtext">
+				{{ fields.short_description }}
+			</p>
+		</section>
+		<section class="article-content">
+			<div class="article-body">
+				{{post.content}}
+			</div>
+		</section>
+		<section class="postslist">
+			<div class="container-fluid">
+				<div class="container-xxl">
+					<div class="row">
+						{% for post in all_posts  %}
+							<div class="col-md-4 postitem">
+								<a href="{{ post.link }}">
+									<img src="{{ post.featured_image }}" class="img-fluid">
+									<h2>{{ post.title }}</h2>
+									<p>{{ post.short_description }}</p>
+								</a>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<!-- /content-wrapper -->
+{% endblock %}

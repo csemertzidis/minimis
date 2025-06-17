@@ -1,0 +1,29 @@
+<!-- Slider main container -->
+<div
+	class="swiper mslider mainslider">
+	<!-- Additional required wrapper -->
+	<div
+		class="swiper-wrapper">
+		<!-- Slides -->
+		{% for slide in slides %}
+			{% if slide.type == 'image' %}
+				<div class="swiper-slide">
+					<img src="{{ slide.image }}" alt="{{ slide.alt }}" srcset="{{ slide.srcset }}" class="img-fluid slider-image" sizes="{{ slide.sizes }}">
+				</div>
+			{% elseif slide.type == 'video' %}
+				<div class="swiper-slide" {% if slide.duration %} data-swiper-autoplay="{{ slide.duration }}" {% endif %}>
+
+					<video class="video" autoplay loop muted playsinline>
+						<source src="{{ slide.video }}" type="video/mp4">
+					</video>
+				</div>
+			{% endif %}
+		{% endfor %}
+		...
+	</div>
+	<!-- If we need pagination -->
+
+
+	<!-- If we need scrollbar -->
+	<div class="swiper-scrollbar"></div>
+</div>

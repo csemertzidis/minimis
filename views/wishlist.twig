@@ -1,0 +1,23 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	{% include 'partial/marquee.twig' %}
+    <div class="container-fluid">
+        <div class="container-xxl">
+             {{post.content}}
+        </div>
+        <div class="container-xxl">
+            <div class="row">
+                {% for w in wishlist %}
+                    <div class="col-12 col-md-4">
+                        <a href="{{ w.permalink }}">
+                            <img src="{{ w.image }}" srcset="{{ w.srcset }}" alt="{{ w.name }}" class="img-fluid">
+                            <h3>{{ w.name }}</h3>
+                        </a>    
+                    </div>
+                {% endfor %}
+            
+        </div>
+    </div>
+   
+{% endblock %}

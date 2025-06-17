@@ -1,0 +1,15 @@
+{
+  "name": "minimis-blocks/productcategory", 
+  "title": "Product Categories",
+  "description": "Product Categories",
+  "category": "custom_blocks", 
+  "icon": "admin-comments",
+  "keywords": ["rich", "text"],
+  "supports": { 
+    "align": "full" 
+  },
+  "acf": {
+    "mode": "edit",
+    "renderCallback": "productcategory" 
+  }
+}
