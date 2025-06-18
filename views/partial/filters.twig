@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="container-xxl">
             <div class="row">
-                <div class="col-6 filterscategories">
+                <div class="col-12 col-md-6 filterscategories">
                     <ul>
                         {% for i in filters_categories %}
                             <li>
@@ -13,7 +13,7 @@
                         {% endfor %}
                     </ul>
                 </div>
-                <div class="col-6 filterscolors">
+                <div class="col-12 col-md-6 filterscolors">
                     <form method="get" action="/shop">
                         {% if category_selected %}
                             <input type="hidden" name="category" value="{{ category_selected }}">

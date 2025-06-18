@@ -15,6 +15,14 @@ padding-bottom: 0.8em;
                     ul{
                         padding: 0px !important;
                         margin: 0px !important;
+
+                        //small screens
+                        @media (max-width: 768px) {
+                            //put them in the center
+                            text-align: center;
+                            display: flex  ;
+                        }
+                        
                         li{
 
                             list-style: none;
@@ -25,6 +33,11 @@ padding-bottom: 0.8em;
                                 text-decoration: none;
                                 font-size: 1.3em;
                                 font-weight: 200;
+
+                                //small screens
+                                @media (max-width: 768px) {
+                                    font-size: 1.1em;
+                                }
 
                             }
                         }
