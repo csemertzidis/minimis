@@ -12,6 +12,7 @@ include_once "gutenberg.php";
 include_once "menuprepare.php";
 require_once "search_ajax.php";
 require_once "stories/stories.php";
+require_once "changelogin.php";
 
 // read all file in folder cpt and include them
 foreach (glob(__DIR__ . "/cpt/*.php") as $filename) {
