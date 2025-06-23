@@ -92,6 +92,11 @@ function minimis_prepare_context($context = []) {
             'databs' => 'data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"',
             'label' => 'Search'
         ],
+        'account' => [
+            'icon' => get_template_directory_uri() . '/assets/account_icon.png',
+            'url' => '/my-account',
+            'label' => 'Account'
+        ],
         
         'wishlist' => [
             'icon' => get_template_directory_uri() . '/assets/heart.png',
