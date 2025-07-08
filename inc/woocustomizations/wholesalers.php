@@ -26,6 +26,28 @@ function bbloomer_paypal_enable_manager( $available_gateways ) {
 }
 
 
+//list all payment gateways
+// $payment_gateways = WC()->payment_gateways->get_available_payment_gateways();
+
+// foreach ($payment_gateways as $gateway) {
+//     // Check if the gateway is enabled
+//     if ($gateway->enabled === 'yes') {
+//         // Output the gateway ID and title
+//        echo 'Payment Gateway ID: ' . $gateway->id . '<br>';
+//        echo 'Payment Gateway Title: ' . $gateway->get_title() . '<br>';
+//     }
+// }
+
+//get all payment gateways from wc even if not enabled
+// $all_payment_gateways = WC()->payment_gateways->payment_gateways();
+// foreach ($all_payment_gateways as $gateway) {
+//     //Output the gateway ID and title
+//    echo 'Payment Gateway ID: ' . $gateway->id . '<br>';
+//    echo 'Payment Gateway Title: ' . $gateway->get_title() . '<br>';
+// }
+
+
+
 
 //modify shipping methods accorfing to user role
 add_filter( 'woocommerce_package_rates', 'bbloomer_modify_shipping_methods', 10, 2 );
