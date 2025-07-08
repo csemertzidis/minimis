@@ -2,3 +2,4 @@
 /vendor/
 /wordpress/
 .vscode/*
+.vscode/sftp.json
